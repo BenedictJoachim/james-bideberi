@@ -1,18 +1,17 @@
-// components/Layout.tsx
-import { ReactNode } from 'react';
-import NavigationBar from '@/components/Navbar';
+// pages/_app.tsx
+import { NextUIProvider } from '@nextui-org/react';
+import type { AppProps } from 'next/app';
+import Layout from '../components/Layout';
+import '../styles/globals.css';
 
-interface LayoutProps {
-  children: ReactNode;
+function RootLayout({ Component, pageProps }: AppProps) {
+  return (
+    <NextUIProvider>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </NextUIProvider>
+  );
 }
 
-const Layout = ({ children }: LayoutProps) => {
-  return (
-    <>
-      <NavigationBar />
-      <main>{children}</main>
-    </>
-  );
-};
-
-export default Layout;
+export default RootLayout;
